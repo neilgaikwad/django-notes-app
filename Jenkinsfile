@@ -10,7 +10,7 @@ pipeline{
         stage('Docker image build'){
             steps{
                 sh "whoami"
-                sh "docker build -t notes-app:3.0 ."
+                sh "docker build -t notes-app:latest ."
                 echo 'image build successfully'
             }
         }
@@ -18,8 +18,8 @@ pipeline{
             steps{
                   withCredentials([usernamePassword(credentialsId: 'dockerCreds', passwordVariable: 'dockerhubpass', usernameVariable: 'dockerhubuser')]) {
                 sh "docker login -u ${env.dockerhubuser} -p ${env.dockerhubpass}"
-                sh "docker image tag notes-app:3.0 neilgaikwad/notes-app:3.0"
-                sh "docker push neilgaikwad/notes-app:3.0"
+                sh "docker image tag notes-app:latest neilgaikwad/notes-app:latest"
+                sh "docker push neilgaikwad/notes-app:latest"
                 echo 'image pushed successfully to the Dockerhub'
                   }
             }
