@@ -20,7 +20,7 @@ pipeline{
                 sh "docker login -u ${env.dockerhubuser} -p ${env.dockerhubpass}"
                 sh "docker image tag notes-app:2.0 neilgaikwad/notes-app:2.0"
                 sh "docker push neilgaikwad/notes-app:2.0"
-                echo 'image pushed successfully'
+                echo 'image pushed successfully to the Dockerhub'
                   }
             }
         }
